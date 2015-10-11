@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/10/2015 03:27:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.AlumnoGrupo" table="`alumno-grupo`" catalog="proyectotsp" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.AlumnoGrupoId">
+            <key-property name="matricula" type="int">
+                <column name="Matricula" />
+            </key-property>
+            <key-property name="grupo" type="string">
+                <column name="grupo" length="10" />
+            </key-property>
+            <key-property name="trimestreLectivo" type="string">
+                <column name="trimestreLectivo" length="3" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="alumno" class="Modelo.Alumno" update="false" insert="false" fetch="select">
+            <column name="Matricula" not-null="true" />
+        </many-to-one>
+        <many-to-one name="grupo" class="Modelo.Grupo" update="false" insert="false" fetch="select">
+            <column name="grupo" length="10" not-null="true" />
+            <column name="trimestreLectivo" length="3" not-null="true" />
+        </many-to-one>
+        <property name="claveUea" type="java.lang.Integer">
+            <column name="claveUea" />
+        </property>
+        <set name="tareaAlumnos" table="`tarea-alumno`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Matricula" not-null="true" />
+                <column name="grupo" length="10" not-null="true" />
+                <column name="trimestreLectivo" length="3" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.TareaAlumno" />
+        </set>
+        <set name="faseAlumnoTareas" table="`fase-alumno-tarea`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Matricula" not-null="true" />
+                <column name="grupo" length="10" not-null="true" />
+                <column name="trimestreLec" length="3" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.FaseAlumnoTarea" />
+        </set>
+    </class>
+</hibernate-mapping>

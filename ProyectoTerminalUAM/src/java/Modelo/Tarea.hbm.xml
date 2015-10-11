@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/10/2015 03:27:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Tarea" table="tarea" catalog="proyectotsp" optimistic-lock="version">
+        <id name="idTarea" type="int">
+            <column name="idTarea" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreTarea" type="string">
+            <column name="nombre_tarea" length="45" not-null="true" />
+        </property>
+        <set name="tareaAlumnos" table="`tarea-alumno`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numeroTarea" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.TareaAlumno" />
+        </set>
+        <set name="faseAlumnoTareas" table="`fase-alumno-tarea`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idTarea" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.FaseAlumnoTarea" />
+        </set>
+    </class>
+</hibernate-mapping>

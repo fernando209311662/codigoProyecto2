@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:growl id="mensaje" showDetail="true"/>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="txtNombre" value="Nombre:"/>
+                <p:inputText id="txtNombre" value="#{beanAltaAlumno.alumno.nombre}" required="true"/>
+                <h:outputLabel for="txtMatricula" value="Matrícula:"/>
+                <p:inputText id="txtMatricula" value="#{beanAltaAlumno.alumno.matricula}" required="true"/>
+                <h:outputLabel for="txtContraseña" value="Contraseña:"/>
+                <p:inputText id="txtContraseña" value="#{beanAltaAlumno.alumno.contrasena}" required="true"/>
+                <p:commandButton value="Registrar" action="#{beanAltaAlumno.registrar}"  />
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
