@@ -1,27 +1,25 @@
-
 package DAO;
 
-import Modelo.Alumno;
+import Modelo.Profesor;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
-public class DAOAlumno 
+public class DAOProfesor 
 {
-    
     private Session session;
     private Transaction trans;
-    private List<Alumno> listaAlumnos;
+    private List<Profesor> listaProfesores;
     
-    public void Registrar(Alumno alumno) throws Exception 
+    public void Registrar(Profesor profesor) throws Exception 
     {
         try 
         {
             session = HibernateUtil.getSessionFactory().openSession();
             trans = session.beginTransaction();
-            session.save(alumno);
+            session.save(profesor);
             trans.commit();
         }
         catch (Exception ex) 
@@ -35,13 +33,13 @@ public class DAOAlumno
         }
     }
     
-    public void Eliminar(Alumno alumno) throws Exception
+    public void Eliminar(Profesor profesor) throws Exception
     {
         try 
         {
             session = HibernateUtil.getSessionFactory().openSession();
             trans = session.beginTransaction();
-            session.delete(alumno);
+            session.delete(profesor);
             trans.commit();
         }
         catch (Exception ex) 
@@ -55,12 +53,12 @@ public class DAOAlumno
         }
     }
 
-    public void Modificar(Alumno alumno) throws Exception {
+    public void Modificar(Profesor profesor) throws Exception {
         try 
         {
             session = HibernateUtil.getSessionFactory().openSession();
             trans = session.beginTransaction();
-            session.update(alumno);
+            session.update(profesor);
             trans.commit();
         } 
         catch (Exception ex)
@@ -74,19 +72,19 @@ public class DAOAlumno
         }
     }
 
-    public List<Alumno> Listar() throws Exception 
+    public List<Profesor> Listar() throws Exception 
     {
         try 
         {
             session = HibernateUtil.getSessionFactory().openSession();
-            Criteria cri = session.createCriteria(Alumno.class);
+            Criteria cri = session.createCriteria(Profesor.class);
             cri.addOrder(Order.asc("apellidos"));
-            listaAlumnos = cri.list();
+            listaProfesores = cri.list();
         }
         catch (Exception ex)
         {
             throw ex;
         }
-        return listaAlumnos;
+        return listaProfesores;
     }
 }

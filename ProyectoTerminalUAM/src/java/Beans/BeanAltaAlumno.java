@@ -1,4 +1,4 @@
-package EJB;
+package Beans;
 
 import DAO.DAOAlumno;
 import Modelo.Alumno;
